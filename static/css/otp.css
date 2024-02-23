@@ -1,0 +1,61 @@
+
+    body{
+        background-color: rgb(126, 212, 183);
+        overflow: hidden;
+    }
+    a{
+        margin-top: 0px;
+        justify-self: center;
+        margin-bottom: 20px;
+        text-decoration: none;
+        background-color: green;
+        color: #000;
+        border-radius: 3px;
+        font-size: 18px;
+        
+
+    }
+    a:hover{
+        background-color: rgb(73, 192, 73);
+        color: #fff;
+        font-size: 19px;
+    }
+    label{
+        font-size: 16px;
+        color: #fff;
+    }
+    input{
+        font-size: 16px;
+    }
+    button{
+        font-size: 18px;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: rgb(148, 202, 148);
+        color: #000;
+    }
+    button:hover{
+        background-color: green;
+        cursor: alias;
+    }
+.di1{
+    justify-content: center;
+    display: grid;
+    background-color: rgb(54, 52, 52);
+    margin: 300px; 
+    margin-top: 200px;
+    border-radius: 10px;
+    
+}
+.form1{
+    
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+h1{
+    color: brown;
+}
+p{
+    color: rgb(43, 226, 73);
+}
