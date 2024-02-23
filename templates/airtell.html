@@ -1,0 +1,142 @@
+{% extends 'addmin_main.html' %}
+
+
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+<div id="content">
+    <button id="menu-toggle">Menu Ber</button>
+    <div id="h1a">
+        <h1 >Welcome to the Admin Dashboard</h1>
+        <h2>AIRTELL</h2>
+    </div>
+    <!-- Your content goes here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <style>
+      
+/* Center the form horizontally and add some spacing */
+form {
+    display: grid;
+    background-color: rgba(0, 255, 255, 0.651);
+    max-width: auto;
+    margin: auto;
+    padding: 5px;
+    margin-left: 10px;
+  
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+
+
+/* Style the labels and form elements */
+label {
+    justify-self: center;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    
+}
+
+
+input[type="text"],
+input[type="number"],
+
+select,
+textarea {
+    justify-self: center;
+    font-size: 16px;
+    width: 30%;
+    padding: 1px;
+    margin-bottom: 1px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 25px;
+    
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    justify-self: center;
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 70px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add some spacing between form elements */
+
+
+/* Style error messages */
+.error-message {
+    color: #FF5733;
+    margin-top: 5px;
+}
+
+/* Style success message */
+.success-message {
+    color: #28a745;
+    margin-top: 5px;
+}
+
+        
+    </style>
+
+   
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="transaction-type">Transaction Type:</label>
+        <select name="transaction-type" id="transaction-type">
+            <option value="credit">Credit</option>
+            <option value="debit">Debit</option>
+        </select>
+        <label for="amount">Amount:</label>
+        <input type="text" id="numberInput" name="amount" step="0.01" required>
+        {% for msg in messages %}
+            <div  class="alert alert-danger" role="alert" 
+            style="width: 30%; justify-self: center; margin-bottom: 5px; text-align: center;">
+                <strong style="justify-self: center; height: 3px;" >{{msg}} {{had|intcomma}} ugx Had Cash And {{last|intcomma}} UGX On The Phone</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+        <label for="account-number">Phone Number:</label>
+        <input type="text" id="account-number" name="phone_number" required>
+        <label >Name:</label>
+        <input type="text"  name="Name"  required>
+        <label >Reference Number:</label>
+        <input type="number"  name="R_number"  required>
+        <button type="submit" onclick="return confirmSubmit()">PUSH</button>
+        <p style="justify-self: center;">Money on the airtell Is <u><strong>{{airtell_b|intcomma}}</strong></u> ugx</p>
+        
+    </form>
+
+
+</div>
+<audio id="confirmation-sound" src="{% static 'audio/error.mp3' %}"></audio>
+<script>
+    
+    function confirmSubmit() {
+        var transactionType = document.getElementById("transaction-type").value;
+        var amount = document.getElementById("numberInput").value;
+        var massege1 = ("Do you want to " + transactionType + " Airtell " +amount + " ugx ?\nClick OK to confirm");
+        var audio = document.getElementById("confirmation-sound");
+        
+        
+        audio.play();
+        return confirm(massege1);
+    }
+</script>
+
+{% endblock %}

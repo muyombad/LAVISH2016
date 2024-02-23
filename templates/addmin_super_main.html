@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/addmin_home.css' %}">
+    <title>Admin Dashboard</title>
+   
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <ul>
+            <li  style="padding-bottom: 20px;"><a href="{% url 'admin_home' %}">You Are Welcome <span style="color: green; text-transform: uppercase;"><strong>{{admin}}</strong></span></a></li>
+            <li><a id="a" href="{% url 'user_profile_super' %}">User Profile</a></li>
+            <li><a id="a" href="{% url 'credit_or_debit' %}">Credit / Debit Accounts</a></li>
+            <li><a style="color: red; font-size: 18px;" href="{% url 'logout_admin' %}">Logout</a></li>
+
+        </ul>
+    </div>
+
+    <!-- Content -->
+    {% block content %}
+
+
+    
+    {% endblock %}
+    
+    
+
+    <!-- JavaScript to toggle the sidebar -->
+    <script src="{% static 'JS/addmin_sript.js' %}" ></script>
+    <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/min.js' %}"></script>
+        <script src="{% static 'js/min1.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+    
+    
+</body>
+</html>

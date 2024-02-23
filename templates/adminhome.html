@@ -1,0 +1,95 @@
+{% extends 'addmin_super_main.html' %}
+
+
+{% block content %}
+{% load humanize %}
+
+<div id="content">
+    <button id="menu-toggle">Menu Ber</button>
+    <div id="h1a">
+        <h1 >Welcome to the Admin Dashboard for super{{di}}</h1>
+
+    </div>
+    <!-- Your content goes here -->
+    <style>
+        /* Add some basic CSS styles to the table */
+        .statement{
+            text-decoration: none;
+            background-color: #010f94;
+            color: rgb(255, 255, 255);
+            padding: 5px;
+            margin-bottom: 80px;
+            border-radius: 5px;
+        }
+        .statement:hover{
+            background-color: rgb(50, 218, 218);
+            color: blue;
+        }
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #010f94;
+            color: rgb(255, 255, 255);
+            border-radius: 4px;
+        }
+        .mtn{
+            background-color: rgba(255, 255, 0, 0.712);
+        }
+        .mtn:nth-child(even){
+            background-color: rgba(232, 235, 91, 0.829);
+        }
+   
+        tr:nth-child(even) {
+            background-color: #e0d2d2;
+        }
+        .airtell{
+            background-color: rgba(228, 99, 82, 0.836);
+        }
+        .airtell:nth-child(even){
+            background-color: rgb(201, 144, 144);
+        }
+        /* You can add more CSS styles here as needed */
+    </style>
+    
+    <table>
+        <tr >
+            <th>Company</th>
+            <th>credit</th>
+            <th>Debit</th>
+            <th>Balance</th>
+            <th>Time</th>
+            
+            
+        </tr>
+        {% for state in state1 %}
+        <tr >
+            
+            <td>{{state.campany}}</td>
+            <td>{{state.Credit|intcomma}}</td>
+            <td>{{state.Debit|intcomma}}</td>
+            <td>{{state.balance|intcomma}}</td>
+            <td>{{state.Time}}</td>
+        
+            
+        </tr>
+        
+        {% endfor %}
+        
+        
+        
+        <!-- Add more rows and data here -->
+    </table>
+</div>
+
+{% endblock %}
