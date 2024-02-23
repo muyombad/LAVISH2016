@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>LAVISH 2016</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font.css' %}">
+		<link rel="stylesheet" href="{% static 'css/form.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="{% static 'images/ico.png' %}" rel="icon">
+    
+
+    </head>
+
+    <body class="bg1">
+        <style>
+            .bg1{
+                background-image: url("{% static 'images/bg.jpg' %}");
+                font-family: 'Roboto', sans-serif;
+                font-size: 16px;
+                font-weight: 300;
+                color: #888;
+                line-height: 30px;
+                text-align: center;
+	            background-repeat: no-repeat;
+	            background-size: cover;
+	            overflow: hidden;
+
+            }
+        </style>
+
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+							<style>.form-top{background-image: linear-gradient(to right, rgba(255, 187, 0, 0.747) , rgba(9, 15, 73, 0.726));}</style>
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+									<style>.hh3{color: #fff; }</style>
+									<h3 align="center" class="hh3">WELLCOME TO</h3>
+                        			<h2 align="center" class="hh3">LAVISH (2016) </h2>
+                            		
+									<p align="center" class="hh3">Enter Your OfficeCode And Password To Login</p>
+                        		</div>
+                        		<!--<div class="form-top-right">
+                        			<i class="fa fa-user"></i>
+                        		</div>-->
+                            </div>
+                            
+                            <div class="form-bottom">
+								<style>
+									.form-top-left {
+	                                       float: left;
+	                                       width: 100%;
+	                                       padding-top: 25px;
+                                             }
+									.form-bottom{
+										background: rgba(238, 238, 238, 0.685);
+									}
+								</style>
+							
+											<form role="form" action="" method="post" class="login-form">
+												{% csrf_token %}
+												<div class="form-group">
+													<label class="sr-only" for="form-username">Office Code</label>
+													<input type="text" name="user_id" placeholder="Office Code" class="form-username form-control" id="form-username" required>
+												</div>
+												<div class="form-group" >
+													<label class="sr-only" for="form-password">Password</label>
+                                                    
+													<input type="password" name="user_pass" placeholder="Password" class="form-password form-control" id="form-password" required>
+												</div>
+												<button type="submit" name="btnSubmit" class="btn" id="my-button">Log In !</button>
+                                                 {% for message in messages %}
+												<div style="background-color: rgb(248, 161, 165); text-align: center; margin-top: 20px;" class="alert alert-danger" role="alert">
+													<strong>{{ message }}</strong> 
+                                                    
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+													  <span aria-hidden="true">&times;</span>
+													</button>
+												  </div>
+												{% endfor %}
+                                                {% include 'loading.html' %}
+												<h3 align="center"><a href = "{% url 'password_reset' %}">Forgot Password?</a></h3> 
+											</form>
+			                    
+		                    </div>
+							 <a href="{% url 'password_reset_done' %}">test</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/min.js' %}"></script>
+        <script src="{% static 'js/min1.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

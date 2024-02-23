@@ -1,0 +1,165 @@
+{% extends 'addmin_super_main.html' %}
+
+
+
+
+{% block content %}
+<div id="content">
+    <button id="menu-toggle">Menu Ber</button>
+    <div id="h1a">
+        <h1>Welcome to the Admin Dashboard</h1>
+        <h2>User Profile</h2>
+    </div>
+    <style>
+       
+        .table1{
+            display: grid;
+            margin: 50px;
+
+        }
+        .update-button{
+            width: auto;
+            justify-self: center;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .update-button:hover{
+            background-color: black;
+            color: #fff;
+            font-size: 17px;
+        }
+        form{
+            display: grid;
+            width: 20%;
+            justify-self: center;
+            margin-top: 20px;
+        }
+    </style>
+    <div class="table1" style="background-color: rgb(161, 145, 145);">
+    <table border="1">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td>{{ user.username }}</td> <!-- Replace 'user.username' with the actual variable from your context -->
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ user.email }}</td> <!-- Replace 'user.email' with the actual variable from your context -->
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>{{ user.last_name }}</td> <!-- Replace 'user.email' with the actual variable from your context -->
+        </tr>
+
+        <!-- Add more rows for other user profile fields -->
+    </table>
+    <style>
+      
+        /* Center the form horizontally and add some spacing */
+        form {
+            display: grid;
+            background-color: gray;
+            max-width: auto;
+            margin: auto;
+            padding: 5px;
+            margin-left: 10px;
+          
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        
+        
+        
+        /* Style the labels and form elements */
+        label {
+            justify-self: center;
+            margin-top: 10px;
+            margin-bottom: 1px;
+            font-weight: bold;
+            
+        }
+        
+        
+        input[type="text"],
+        input[type="number"],
+        
+        select,
+        textarea {
+            justify-self: center;
+            font-size: 16px;
+            width: 30%;
+            padding: 1px;
+            margin-bottom: 1px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 25px;
+            
+        }
+        
+        /* Style the submit button */
+        button[type="submit"] {
+            justify-self: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            width: auto;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Add some spacing between form elements */
+        
+        
+        /* Style error messages */
+        strong {
+            color: #FF5733;
+            margin-top: 5px;
+        }
+        
+        /* Style success message */
+        .success-message {
+            color: #28a745;
+            margin-top: 5px;
+        }
+        
+                
+            </style>
+    <h2>Change Password</h2>
+    <form method="post" action="{% url 'change_password' %}">
+        {% csrf_token %}
+        
+        <label for="id_current_password">Current Password:</label>
+        <input type="password" name="current_password" id="id_current_password" required>
+        
+        <label for="id_new_password1">New Password:</label>
+        <input type="password" name="new_password1" id="id_new_password1" required>
+        {% for msg in messages %}
+            <div  class="alert alert-danger" role="alert" 
+            style="width: 30%; justify-self: center; margin-bottom: 5px; text-align: center;">
+                <strong style="justify-self: center; height: 5px;" >{{msg}}</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+        
+        <label for="id_new_password2">Confirm New Password:</label>
+        <input type="password" name="new_password2" id="id_new_password2" required>
+        
+        <button type="submit">Change Password</button>
+    </form>
+</div>
+
+{% endblock %}
+
+

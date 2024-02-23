@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/otp.css' %}">
+    
+     
+    <title>OTP_Verification</title>
+</head>
+<body>
+    
+
+<div class="di1">
+    <h1>Second Velification</h1>
+    <form class="form1" action="" method="POST">
+        {% csrf_token %}
+        <label for="text">Enter Your OTP</label>
+        <input type="text" placeholder="OTP" name="otp" required>
+        <button type="submit" id="my-button">Submit</button>
+    </form>
+    {% for msg in messages %}
+            <div style="background-color: red; justify-self: center; margin-bottom: 10px;"  class="alert alert-danger" role="alert">
+                <strong></strong> {{msg}}
+                <button style="background-color: red;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+    <a id="my-button" href="{% url 'rerequest_otp' %}">Resend OTP</a>
+    <p>OTP Has Ben Sent To Your Phone Number Please Check {{code1}}</p>
+    {% include 'loading.html' %}
+</div>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/min.js' %}"></script>
+ <script src="{% static 'js/min1.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'addmin_main.html' %}
+
+
+
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+<div id="content" >
+    <button id="menu-toggle">Menu Ber</button>
+    <div id="h1a">
+        <h1 >Welcome to the Admin Dashboard</h1>
+        <h2>Tatal Amount For Hadcash And Cash On Phone</h2>
+    </div>
+    <!-- Your content goes here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+
+<h2 style="background-color: rgba(104, 215, 243, 0.548);">Your had cash for stationary  is 
+    <strong style="color: green;">{{had_stationary|intcomma}}</strong> </h2>    
+      
+<h2 style="background-color: rgba(104, 215, 243, 0.548);">Your had cash agent is 
+    <strong style="color: green;">{{had_agent|intcomma}}</strong> </h2>
+
+
+     <h2 style="background-color: rgba(104, 215, 243, 0.548);">And the cash on the mtn is
+        <strong style="color: green;">{{mtn|intcomma}}</strong></h2>  
+        <h2 style="background-color: rgba(104, 215, 243, 0.548);">And the cash on airtell is
+            <strong style="color: green;">{{airtell|intcomma}}</strong></h2>   
+
+           <h2 style="background-color: rgba(104, 215, 243, 0.548);">And the cash on all mashins is
+            <strong style="color: green;">{{tatal_agent|intcomma}}</strong></h2>
+            <h2 style="background-color: rgba(104, 215, 243, 0.548);">And the cash in the agent banking  is
+            <strong style="color: green;">{{tatal|intcomma}}</strong></h2>
+   
+
+</div>
+
+
+{% endblock %}
+
+

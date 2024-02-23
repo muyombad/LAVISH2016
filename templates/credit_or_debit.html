@@ -1,0 +1,194 @@
+{% extends 'addmin_super_main.html' %}
+
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+<div id="content">
+    <button id="menu-toggle">Menu Ber</button>
+    <div id="h1a">
+        <h1 >Welcome to the Admin Dashboard Of Credit And Debit </h1>
+        <h2>All Accounts</h2>
+    </div>
+    <!-- Your content goes here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <style>
+      body{
+        background: #646060;
+        color: #fff;
+      }
+/* Center the form horizontally and add some spacing */
+form {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.815);
+    max-width: auto;
+    margin: auto;
+    padding: 5px;
+    margin-left: 10px;
+    height: 100px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.829);
+    border-radius: 5px;
+}
+
+
+
+/* Style the labels and form elements */
+label {
+    color: #15ff00;
+    justify-self: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    padding-right: 0px;
+    padding-left: 10px;
+    
+}
+
+
+input[type="text"],
+input[type="number"],
+
+select,
+textarea {
+    justify-self: center;
+    font-size: 16px;
+    width: 30%;
+    color: #2bff00;
+    background-color: #000;
+    margin-bottom: 1px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    height: 25px;
+    
+    margin-right: 10px;
+    
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    justify-self: center;
+    background-color: #0e0d0dea;
+    color: rgb(47, 204, 16);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 1px;
+    cursor: pointer;
+    font-weight: bold;
+    height: 30px;
+    width: 70px;
+}
+
+button[type="submit"]:hover {
+    background-color: #000000;
+}
+
+/* Add some spacing between form elements */
+
+
+/* Style error messages */
+.error-message {
+    color: #FF5733;
+    margin-top: 5px;
+}
+
+/* Style success message */
+.success-message {
+    color: #28a745;
+    margin-top: 5px;
+}
+
+        
+    </style>
+
+   
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="transaction-type">Company:</label>
+        <select name="Company" id="Company">
+            <option value="mtn">MTN</option>
+            <option value="airtell">AIRTELL</option>
+            <option value="had_cash">HAD_CASH</option>
+        </select>
+        <label for="transaction-type">Transaction:</label>
+        <select name="transaction-type" id="transaction-type">
+            <option value="credit">Credit</option>
+            <option value="debit">Debit</option>
+        </select>
+        <label for="amount">Amount:</label>
+        <input type="text" id="numberInput" name="amount" step="0.01" required>
+        {% for msg in messages %}
+            <div  class="alert alert-danger" role="alert" 
+            style="width: 30%; justify-self: center; margin-bottom: 5px; text-align: center;">
+                <strong style="justify-self: center; height: 3px;" >{{msg}}{{last|intcomma}} UGX</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+        
+        <button type="submit" onclick="return confirmSubmit()">PUSH</button>
+        
+    </form>
+
+  <div>
+    
+  <style>
+    .custom-div {
+      background-color: black;
+      color: green;
+      padding: 20px;
+      margin: 60px;
+    }
+  </style>
+
+
+     <div class="custom-div">
+       <p>The had cash for the agent banking is  <u>{{last_agent|intcomma}} ugx</u></p>
+       <p>The money you have on MTN maschine is  <u>{{mtn|intcomma}} ugx</u></p>
+       <p>The money you have on airtell maschine is <u>{{airtell|intcomma}} ugx</u></p>
+       <p>The tatal amount you have in safe of stationary is  <u>{{last_stationary|intcomma}} ugx</u></p>
+     </div>
+    
+     <div class="custom-div">
+        <p>All money in the agent banking is <u>{{last_all|intcomma}} ugx</u></p>
+
+     </div>   
+  
+  </div>
+</div>
+<script>
+    // Get the input element
+    const numberInput = document.getElementById("numberInput");
+
+    // Add an event listener to format the number with commas as the user types
+    numberInput.addEventListener("input", function () {
+        // Remove any existing commas and non-digit characters
+        const value = this.value.replace(/[^\d]/g, "");
+
+        // Format the value with commas
+        this.value = formatNumberWithCommas(value);
+    });
+
+    // Function to format a number with commas
+    function formatNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
+<audio id="confirmation-sound" src="{% static 'audio/error.mp3' %}"></audio>
+<script>
+    
+    function confirmSubmit() {
+        var transactionType = document.getElementById("transaction-type").value;
+        var amount = document.getElementById("numberInput").value;
+        var comp = document.getElementById("Company").value;
+        var massege1 = ("Do you want to " + transactionType +" " + comp +" "+ amount + " ugx ?\nClick OK to confirm");
+        var audio = document.getElementById("confirmation-sound");
+        
+        
+        audio.play();
+        return confirm(massege1);
+    }
+</script>
+
+{% endblock %}

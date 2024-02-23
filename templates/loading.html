@@ -1,0 +1,74 @@
+{% load static %}
+<div class="loading-spinner" id="loading-spinner" style="display: none;"></div>
+
+          <style>
+              .loading-spinner {
+                border: 4px solid rgba(0, 0, 0, 0.3);
+                border-top: 4px solid #0010f5;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                margin-top: -20px;
+                margin-left: -20px;
+                z-index: 9999;
+              }
+            
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            </style>
+    
+          
+   
+    
+    <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/min.js' %}"></script>
+        <script src="{% static 'js/min1.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+<script>
+  // Initialize a counter to track active AJAX requests
+  var activeAjaxRequests = 0;
+
+  // Timeout duration (in milliseconds) before hiding the spinner
+  var spinnerHideTimeout;
+
+  $(document).ready(function() {
+    // Function to show the loading spinner
+    function showLoadingSpinner() {
+      $('#loading-spinner').show();
+    }
+
+    
+    
+
+    // Intercept all AJAX requests and update the counter
+    $(document).ajaxSend(function() {
+      activeAjaxRequests++;
+      showLoadingSpinner();
+    });
+
+    $(document).ajaxComplete(function() {
+      activeAjaxRequests--;
+      hideLoadingSpinner();
+    });
+
+    // Example: Send an AJAX request when a button is clicked
+    $('#my-button').click(function() {
+      $.ajax({
+        url: "{% url 'admin' %}",
+        method: 'GET',
+        success: function(data) {
+          // Handle the AJAX response here
+        },
+        error: function(error) {
+          // Handle AJAX error here
+        }
+      });
+    });
+  });
+</script>
